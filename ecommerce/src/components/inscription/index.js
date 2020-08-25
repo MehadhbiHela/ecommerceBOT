@@ -48,7 +48,92 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignIn() {
+  const classes = useStyles();
+  const globalState = useSelector(state => state);
+  const dispatch=useDispatch();
+  const handleChangemail=(text)=>{
+    dispatch(changeMail(text));
+  }
+const handleChangepass=(text)=>{
+    dispatch(changePassword(text));
+  }
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            value={globalState.email}
+            autoComplete="email"
+            autoFocus
+            onChange={(evt)=>{
+              handleChangemail(evt.target.value);
+          }}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            value={globalState.password}
+            autoComplete="current-password"
+            onChange={(evt)=>{
+                handleChangepass(evt.target.value);
+            }}
+          />
+          {/*<FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />*/}
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={8}>
+        
+      </Box>
+    </Container>
+  );
+}
+
+export function SignUp() {
   const classes = useStyles();
   const globalState = useSelector(state => state);
   const dispatch=useDispatch();
